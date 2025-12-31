@@ -18,7 +18,7 @@
 2.  **Offensive Language** (Medium Severity)
 3.  **Normal / Safe** (Low Severity)
 
-Unlike traditional keyword-based filters, this project utilizes **BERT (Bidirectional Encoder Representations from Transformers)** to understand the *contextual nuance* of toxic language. The system is fully deployed using a decoupled architecture (Model Registry + Inference App).
+Unlike traditional keyword-based filters, this project utilizes **BERT (Bidirectional Encoder Representations from Transformers)** to understand the *contextual nuance* of toxic language. The system i[...]
 
 ---
 
@@ -116,3 +116,11 @@ This project is released under the MIT License.
 
 ## 📚 References
 - Davidson, T., Warmsley, D., Macy, M., & Weber, I. (2017). Automated Hate Speech Detection and the Problem of Offensive Language.
+
+
+---
+
+## Author
+Siddhant Tamgadge
+
+Feel free to reach out with queries on LinkedIn: https://www.linkedin.com/in/siddhanttamgadge
