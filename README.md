@@ -26,8 +26,8 @@ Unlike traditional keyword-based filters, this project utilizes **BERT (Bidirect
 
 - Source: Davidson et al. (2017) - "Automated Hate Speech Detection and the Problem of Offensive Language."
 - Composition: Approximately 24,000 labeled tweets.
-- Class Imbalance: Hate speech constitutes only ~5% of the dataset.
-- Handling Strategy: Implemented a Weighted Cross-Entropy Loss in `train.py` to penalize the model more heavily for misclassifying hate speech samples and mitigate the class imbalance.
+- Class Imbalance: Hate speech constitutes only ~5% of the data.
+- Handling Strategy: Implemented Weighted Cross-Entropy Loss in `train.py` to penalize the model more heavily for misclassifying hate speech samples and mitigate the class imbalance.
 
 ---
 
