@@ -8,7 +8,7 @@
 
 > **M.Tech Thesis Project** | *IIIT Bhubaneswar*
 
-### 🔴 **Live Cloud Demo:** [Click Here to Launch App](https://huggingface.co/spaces/[YOUR_HF_USERNAME]/Hate_AI_Detector)
+### 🔴 **Live Cloud Demo:** [Click Here to Launch App](https://huggingface.co/spaces/Sid1907/Hate_AI_Detector)
 
 ---
 
@@ -22,12 +22,34 @@ Unlike traditional keyword-based filters, this project utilizes **BERT (Bidirect
 
 ---
 
-## 1. Dataset
+⚙️ Technical Architecture
 
-- Source: Davidson et al. (2017) - "Automated Hate Speech Detection and the Problem of Offensive Language."
-- Composition: Approximately 24,000 labeled tweets.
-- Class Imbalance: Hate speech constitutes only ~5% of the data.
-- Handling Strategy: Implemented Weighted Cross-Entropy Loss in `train.py` to penalize the model more heavily for misclassifying hate speech samples and mitigate the class imbalance.
+1. Dataset
+Source: Davidson et al. (2017) - Automated Hate Speech Detection and the Problem of Offensive Language.
+
+Composition: ~24,000 labeled tweets.
+
+Class Imbalance: Hate speech constitutes only ~5% of the data.
+
+Handling Strategy: Implemented Weighted Cross-Entropy Loss in train.py to penalize the model heavily for missing hate speech samples.
+
+2. Model Pipeline (train.py)
+Base Architecture: bert-base-uncased (12 Layers, 110M Parameters).
+
+Tokenizer: WordPiece tokenizer (max sequence length: 128 tokens).
+
+Optimization: AdamW optimizer with a linear learning rate scheduler.
+
+Training: Fine-tuned for 3 epochs on a GPU environment.
+
+3. Inference Engine (app.py)
+Framework: Streamlit (Python-based Web UI).
+
+Logic: Instead of simple argmax, the app uses Probability Thresholding. If the confidence for "Hate Speech" exceeds 40%, it overrides "Normal" predictions to prioritize safety (High Recall approach).
+
+📸 Screenshots
+1. Real-Time Detection Interface
+The deployed application detecting hate speech with confidence scores.
 
 ---
 
@@ -46,32 +68,44 @@ This repository contains the full source code for training, testing, and deploym
 
 ---
 
-## 📈 Evaluation
-- Metrics: Precision, Recall, F1-score (per-class and macro-averaged)
-- Known limitations: The dataset is imbalanced and drawn from older Twitter data; model performance may degrade on newer platforms or different dialects without further fine-tuning.
+## 🛠️ Installation & Usage
+Prerequisite
+Ensure you have Python 3.8+ installed.
 
----
-
-## 🚀 Deployment
-The app is built with Streamlit and intended to be hosted on Hugging Face Spaces. The model weights can be loaded from a model registry or a checkpoint in the repo depending on deployment setup.
-
----
-
-## 🛠️ Usage
-1. Create a virtual environment and install dependencies:
+1. Clone the Repository
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # Unix/Mac
-venv\Scripts\activate     # Windows
+git clone https://github.com/TamgadgeSiddhant19/BERT-Hate-Speech-Detection-End-to-End.git
+cd BERT-Hate-Speech-Detection-End-to-End
+```
+
+2. Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-2. Run the Streamlit app locally:
+3. Run the Application
 
 ```bash
 streamlit run app.py
 ```
+
+4. (Optional) Retrain the Model
+If you want to train the model from scratch on your local machine (GPU recommended):
+
+```bash
+python train.py
+```
+
+---
+
+## 📈 Evaluation
+- Metrics: Precision, Recall, F1-score (per-class and macro-averaged)
+- Validation Accuracy: ~90%
+- Known limitations: The dataset is imbalanced and drawn from older Twitter data; model performance may degrade on newer platforms or different dialects without further fine-tuning.
+
+Future Work: Integration of the HateXplain dataset to improve detection of implicit toxicity.
 
 ---
 
